@@ -175,7 +175,7 @@ class _PartnerPageState extends State<PartnerPage> {
   Widget _buildInput({
     required String label,
     required TextEditingController controller,
-    required IconData icon,
+    required FaIconData icon,
     TextInputType type = TextInputType.text,
   }) {
     return Padding(
@@ -187,7 +187,7 @@ class _PartnerPageState extends State<PartnerPage> {
         decoration: InputDecoration(
           labelText: label,
           labelStyle: TextStyle(color: textGrey, fontSize: 13),
-          prefixIcon: Icon(icon, color: accentPurple, size: 20),
+          prefixIcon: FaIcon(icon, color: accentPurple, size: 20),
           filled: true,
           fillColor: const Color(0xFFF8F9FA),
           border: OutlineInputBorder(
@@ -239,7 +239,7 @@ class _PartnerPageState extends State<PartnerPage> {
                           color: accentPurple.withOpacity(0.15),
                           shape: BoxShape.circle,
                         ),
-                        child: Icon(FontAwesomeIcons.userPlus, color: accentPurple, size: 30),
+                        child: FaIcon(FontAwesomeIcons.userPlus, color: accentPurple, size: 30),
                       ),
                       const SizedBox(height: 16),
                       Text("CREATE ACCOUNT", style: TextStyle(color: primaryWhite, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Orbitron')),
@@ -323,7 +323,7 @@ class _PartnerPageState extends State<PartnerPage> {
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(color: Colors.blue.withOpacity(0.15), shape: BoxShape.circle),
-                  child: Icon(FontAwesomeIcons.clock, color: Colors.blue, size: 30),
+                  child: FaIcon(FontAwesomeIcons.clock, color: Colors.blue, size: 30),
                 ),
                 const SizedBox(height: 16),
                 Text("ADD DURATION", style: TextStyle(color: primaryWhite, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Orbitron')),
@@ -380,7 +380,7 @@ class _PartnerPageState extends State<PartnerPage> {
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(color: Colors.redAccent.withOpacity(0.15), shape: BoxShape.circle),
-                  child: Icon(FontAwesomeIcons.userSlash, color: Colors.redAccent, size: 30),
+                  child: FaIcon(FontAwesomeIcons.userSlash, color: Colors.redAccent, size: 30),
                 ),
                 const SizedBox(height: 16),
                 Text("DELETE ACCOUNT", style: TextStyle(color: primaryWhite, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Orbitron')),
@@ -411,7 +411,7 @@ class _PartnerPageState extends State<PartnerPage> {
     );
   }
 
-  Widget _buildTopButton({required String title, required IconData icon, required Color color, required VoidCallback onTap}) {
+  Widget _buildTopButton({required String title, required FaIconData icon, required Color color, required VoidCallback onTap}) {
     return Expanded(
       child: InkWell(
         onTap: onTap,
@@ -429,7 +429,7 @@ class _PartnerPageState extends State<PartnerPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon, color: color, size: 28),
+              FaIcon(icon, color: color, size: 28),
               const SizedBox(height: 8),
               Text(
                 title,

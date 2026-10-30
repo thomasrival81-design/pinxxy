@@ -69,7 +69,7 @@ class _ProfilePageState extends State<ProfilePage> {
       );
       return;
     }
-    
+
     await Clipboard.setData(ClipboardData(text: widget.uid!));
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -217,7 +217,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         color: Colors.blue.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Icon(FontAwesomeIcons.idCard, color: Colors.blue, size: 20),
+                      child: const FaIcon(FontAwesomeIcons.idCard, color: Colors.blue, size: 20),
                     ),
                     const SizedBox(width: 12),
                     Expanded(

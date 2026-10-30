@@ -229,7 +229,7 @@ class _DevPageState extends State<DevPage> with SingleTickerProviderStateMixin {
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(color: accentBlue.withOpacity(0.1), shape: BoxShape.circle),
-                      child: const Icon(FontAwesomeIcons.userPlus, color: accentBlue, size: 28),
+                      child: const FaIcon(FontAwesomeIcons.userPlus, color: accentBlue, size: 28),
                     ),
                     const SizedBox(height: 14),
                     const Text("BUAT AKUN", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Orbitron')),
@@ -318,7 +318,7 @@ class _DevPageState extends State<DevPage> with SingleTickerProviderStateMixin {
                 Container(
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(color: Colors.blue.withOpacity(0.1), shape: BoxShape.circle),
-                  child: const Icon(FontAwesomeIcons.clock, color: Colors.blue, size: 26),
+                  child: const FaIcon(FontAwesomeIcons.clock, color: Colors.blue, size: 26),
                 ),
                 const SizedBox(height: 14),
                 const Text("TAMBAH DURASI", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Orbitron')),
@@ -369,7 +369,7 @@ class _DevPageState extends State<DevPage> with SingleTickerProviderStateMixin {
                 Container(
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(color: Colors.redAccent.withOpacity(0.1), shape: BoxShape.circle),
-                  child: const Icon(FontAwesomeIcons.userSlash, color: Colors.redAccent, size: 26),
+                  child: const FaIcon(FontAwesomeIcons.userSlash, color: Colors.redAccent, size: 26),
                 ),
                 const SizedBox(height: 14),
                 const Text("HAPUS AKUN", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Orbitron')),
@@ -396,7 +396,7 @@ class _DevPageState extends State<DevPage> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget _buildField(TextEditingController ctrl, String hint, IconData icon,
+  Widget _buildField(TextEditingController ctrl, String hint, FaIconData icon,
       {bool isPassword = false, TextInputType type = TextInputType.text}) {
     return Container(
       decoration: BoxDecoration(
@@ -412,7 +412,7 @@ class _DevPageState extends State<DevPage> with SingleTickerProviderStateMixin {
         decoration: InputDecoration(
           hintText: hint,
           hintStyle: TextStyle(color: Colors.white.withOpacity(0.3), fontSize: 13),
-          prefixIcon: Icon(icon, color: accentBlue.withOpacity(0.6), size: 18),
+          prefixIcon: FaIcon(icon, color: accentBlue.withOpacity(0.6), size: 18),
           border: InputBorder.none,
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         ),
@@ -420,7 +420,7 @@ class _DevPageState extends State<DevPage> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget _buildActionCard({required IconData icon, required Color color, required String title, required String subtitle, required VoidCallback onTap}) {
+  Widget _buildActionCard({required FaIconData icon, required Color color, required String title, required String subtitle, required VoidCallback onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -439,7 +439,7 @@ class _DevPageState extends State<DevPage> with SingleTickerProviderStateMixin {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(color: color.withOpacity(0.12), shape: BoxShape.circle),
-              child: Icon(icon, color: color, size: 22),
+              child: FaIcon(icon, color: color, size: 22),
             ),
             const SizedBox(width: 14),
             Expanded(

@@ -227,7 +227,7 @@ class _LandingPageState extends State<LandingPage> {
     );
   }
 
-  Widget _socialBtn(IconData icon, String label, String url) {
+  Widget _socialBtn(FaIconData icon, String label, String url) {
     return GestureDetector(
       onTap: () => _launch(url),
       child: Column(children: [
@@ -238,7 +238,7 @@ class _LandingPageState extends State<LandingPage> {
             color: _card.withOpacity(0.5),
             border: Border.all(color: Colors.white.withOpacity(0.3)),
           ),
-          child: Icon(icon, color: Colors.white.withOpacity(0.85), size: 22),
+          child: FaIcon(icon, color: Colors.white.withOpacity(0.85), size: 22),
         ),
         const SizedBox(height: 6),
         Text(label, style: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 11)),
