@@ -20,7 +20,7 @@ dependencies:
   
   # UI & MEDIA
   cupertino_icons: ^1.0.8
-  font_awesome_flutter: ^10.7.0
+  font_awesome_flutter: ^11.0.0
   video_player: ^2.9.2
   chewie: ^1.5.2
   shimmer: ^3.0.0
