@@ -168,7 +168,7 @@ class _SellerPageState extends State<SellerPage> {
   Widget _buildInput({
     required String label,
     required TextEditingController controller,
-    required IconData icon,
+    required FaIconData icon,
     TextInputType type = TextInputType.text,
   }) {
     return Padding(
@@ -230,7 +230,7 @@ class _SellerPageState extends State<SellerPage> {
                       color: accentPurple.withOpacity(0.15),
                       shape: BoxShape.circle,
                     ),
-                    child: Icon(FontAwesomeIcons.userPlus, color: accentPurple, size: 30),
+                    child: FaIcon(FontAwesomeIcons.userPlus, color: accentPurple, size: 30),
                   ),
                   const SizedBox(height: 16),
                   Text("CREATE MEMBER", style: TextStyle(color: primaryWhite, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Orbitron')),
@@ -289,7 +289,7 @@ class _SellerPageState extends State<SellerPage> {
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(color: Colors.blue.withOpacity(0.15), shape: BoxShape.circle),
-                  child: Icon(FontAwesomeIcons.clock, color: Colors.blue, size: 30),
+                  child: FaIcon(FontAwesomeIcons.clock, color: Colors.blue, size: 30),
                 ),
                 const SizedBox(height: 16),
                 Text("ADD DURATION", style: TextStyle(color: primaryWhite, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Orbitron')),
@@ -346,7 +346,7 @@ class _SellerPageState extends State<SellerPage> {
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(color: Colors.redAccent.withOpacity(0.15), shape: BoxShape.circle),
-                  child: Icon(FontAwesomeIcons.userSlash, color: Colors.redAccent, size: 30),
+                  child: FaIcon(FontAwesomeIcons.userSlash, color: Colors.redAccent, size: 30),
                 ),
                 const SizedBox(height: 16),
                 Text("DELETE ACCOUNT", style: TextStyle(color: primaryWhite, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Orbitron')),
@@ -377,7 +377,7 @@ class _SellerPageState extends State<SellerPage> {
     );
   }
 
-  Widget _buildTopButton({required String title, required IconData icon, required Color color, required VoidCallback onTap}) {
+  Widget _buildTopButton({required String title, required FaIconData icon, required Color color, required VoidCallback onTap}) {
     return Expanded(
       child: InkWell(
         onTap: onTap,
