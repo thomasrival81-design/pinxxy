@@ -185,7 +185,7 @@ class _AdminPageState extends State<AdminPage> {
         decoration: InputDecoration(
           labelText: label,
           labelStyle: TextStyle(color: textGrey, fontSize: 13),
-          prefixIcon: Icon(icon, color: accentPurple, size: 20),
+          prefixIcon: FaIcon(icon, color: accentPurple, size: 20),
           filled: true,
           fillColor: const Color(0xFFF8F9FA),
           border: OutlineInputBorder(
@@ -427,7 +427,7 @@ class _AdminPageState extends State<AdminPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(icon, color: color, size: 28),
+              FaIcon(icon, color: color, size: 28),
               const SizedBox(height: 8),
               Text(
                 title,
