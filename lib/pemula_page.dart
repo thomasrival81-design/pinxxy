@@ -222,7 +222,7 @@ class _PemulaPageState extends State<PemulaPage> {
                     Container(
                       padding: const EdgeInsets.all(16),
                       decoration: BoxDecoration(color: pemulaColor.withOpacity(0.12), shape: BoxShape.circle),
-                      child: Icons(Icons.person_add, color: pemulaColor, size: 28),
+                      child: Icon(Icons.person_add, color: pemulaColor, size: 28),
                     ),
                     const SizedBox(height: 14),
                     const Text("BUAT AKUN", style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Orbitron')),
@@ -309,7 +309,7 @@ class _PemulaPageState extends State<PemulaPage> {
                 Container(
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(color: Colors.blue.withOpacity(0.1), shape: BoxShape.circle),
-                  child: const Icons(Icons.access_time, color: Colors.blue, size: 26),
+                  child: const Icon(Icons.access_time, color: Colors.blue, size: 26),
                 ),
                 const SizedBox(height: 14),
                 const Text("TAMBAH DURASI", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Orbitron')),
@@ -359,7 +359,7 @@ class _PemulaPageState extends State<PemulaPage> {
                 Container(
                   padding: const EdgeInsets.all(14),
                   decoration: BoxDecoration(color: Colors.redAccent.withOpacity(0.1), shape: BoxShape.circle),
-                  child: const Icons(Icons.person_off, color: Colors.redAccent, size: 26),
+                  child: const Icon(Icons.person_off, color: Colors.redAccent, size: 26),
                 ),
                 const SizedBox(height: 14),
                 const Text("HAPUS AKUN", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold, fontFamily: 'Orbitron')),
@@ -386,7 +386,7 @@ class _PemulaPageState extends State<PemulaPage> {
     );
   }
 
-  Widget _buildField(TextEditingController ctrl, String hint, IconsData icon,
+  Widget _buildField(TextEditingController ctrl, String hint, IconData icon,
       {bool isPassword = false, TextInputType type = TextInputType.text}) {
     return Container(
       decoration: BoxDecoration(
@@ -402,7 +402,7 @@ class _PemulaPageState extends State<PemulaPage> {
         decoration: InputDecoration(
           hintText: hint,
           hintStyle: TextStyle(color: Colors.white.withOpacity(0.3), fontSize: 13),
-          prefixIcon: Icons(icon, color: pemulaColor.withOpacity(0.7), size: 18),
+          prefixIcon: Icon(icon, color: pemulaColor.withOpacity(0.7), size: 18),
           border: InputBorder.none,
           contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
         ),
@@ -429,7 +429,7 @@ class _PemulaPageState extends State<PemulaPage> {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(color: color.withOpacity(0.12), shape: BoxShape.circle),
-              child: Icons(icon, color: color, size: 22),
+              child: Icon(icon, color: color, size: 22),
             ),
             const SizedBox(width: 14),
             Expanded(
