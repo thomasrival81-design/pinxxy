@@ -1,204 +1,51 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
-// === IMPORT SEMUA HALAMAN ===
-import 'owner_page.dart';
-import 'dev_page.dart';
-import 'partner_page.dart';
-import 'pemula_page.dart';
-import 'global_chat_page.dart'; // <--- INI FILE CHAT BENERAN LU
-
-class CustomDrawer extends StatelessWidget {
-  final String username;
-  final String role;
-  final String sessionKey;
-
-  const CustomDrawer({
-    super.key,
-    required this.username,
-    required this.role,
-    required this.sessionKey,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    // Bikin role jadi huruf kecil semua biar aman pas dicek
-    final userRole = role.toLowerCase();
-
-    // Cek role masing-masing
-    final isOwner = userRole == 'owner' || userRole == 'admin' || userRole == 'high_owner' || userRole == 'pemilik';
-    final isDev = userRole == 'dev' || userRole == 'developer';
-    final isPartner = userRole == 'partner';
-    final isPemula = userRole == 'pemula';
-
-    return Drawer(
-      backgroundColor: const Color(0xFFEAF4FF),
-      child: Column(
-        children: [
-          // === HEADER PROFIL ===
-          Container(
-            width: double.infinity,
-            padding: const EdgeInsets.only(top: 50, bottom: 20),
-            decoration: const BoxDecoration(color: Color(0xFF247BFF)),
+class CustomPopup {
+  static void show(BuildContext context, {required String title, required String message, String? confirmText, VoidCallback? onConfirm, String? cancelText, VoidCallback? onCancel, IconData? icon, Color? iconColor}) {
+    showDialog(
+      context: context,
+      barrierColor: Colors.black.withOpacity(0.6),
+      builder: (BuildContext context) => BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+        child: Dialog(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          child: Container(
+            padding: const EdgeInsets.all(24),
+            decoration: BoxDecoration(
+              color: const Color(0xFF1C1C1E),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: const Color(0xFF4FC3F7).withOpacity(0.3), width: 1.5),
+              boxShadow: [BoxShadow(color: const Color(0xFF4FC3F7).withOpacity(0.1), blurRadius: 24, offset: const Offset(0, 10))],
+            ),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Container(
-                  width: 80, height: 80,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: const Color(0xFF171717), width: 2),
-                    boxShadow: const [BoxShadow(color: Color(0xFF171717), offset: Offset(3, 4), blurRadius: 0)],
+                if (icon != null) ...[
+                  Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(color: (iconColor ?? const Color(0xFF4FC3F7)).withOpacity(0.15), shape: BoxShape.circle, border: Border.all(color: (iconColor ?? const Color(0xFF4FC3F7)).withOpacity(0.3), width: 1)),
+                    child: Icon(icon, size: 36, color: iconColor ?? const Color(0xFF4FC3F7)),
                   ),
-                  child: Center(
-                    child: Text(
-                      username.isNotEmpty ? username[0].toUpperCase() : 'U',
-                      style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold, color: Color(0xFF247BFF)),
-                    ),
-                  ),
-                ),
+                  const SizedBox(height: 20),
+                ],
+                Text(title, textAlign: TextAlign.center, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900, fontFamily: 'Orbitron', color: Colors.white, letterSpacing: 1.0)),
                 const SizedBox(height: 12),
-                Text(username.toUpperCase(), style: const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w900, letterSpacing: 1.5)),
-                const SizedBox(height: 8),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                  decoration: BoxDecoration(color: Colors.white, border: Border.all(color: const Color(0xFF171717), width: 1.5), borderRadius: BorderRadius.circular(4)),
-                  child: Text(
-                    role.toUpperCase(),
-                    style: const TextStyle(color: Color(0xFFE53935), fontSize: 10, fontWeight: FontWeight.w900, letterSpacing: 1),
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // === LIST MENU ===
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
-              children: [
-                // 1. MENU OWNER
-                if (isOwner)
-                  _buildMenuItem(
-                    context, Icons.admin_panel_settings, 'Owner Page',
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => OwnerPage(sessionKey: sessionKey, username: username)));
-                    },
-                  ),
-
-                // 2. MENU DEV
-                if (isDev)
-                  _buildMenuItem(
-                    context, Icons.code, 'Developer Page',
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => DevPage(sessionKey: sessionKey)));
-                    },
-                  ),
-
-                // 3. MENU PARTNER
-                if (isPartner)
-                  _buildMenuItem(
-                    context, Icons.handshake, 'Partner Page',
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => PartnerPage(sessionKey: sessionKey, username: username)));
-                    },
-                  ),
-
-                // 4. MENU PEMULA
-                if (isPemula)
-                  _buildMenuItem(
-                    context, Icons.manage_accounts, 'Pemula Page',
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => PemulaPage(sessionKey: sessionKey)));
-                    },
-                  ),
-
-                // 5. MENU PUBLIC CHAT (PAKAI GLOBAL CHAT PAGE)
-                _buildMenuItem(
-                  context, Icons.forum, 'Public Chat', isBordered: true,
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ChatRoomPage(
-                          username: username, // ChatRoomPage cuma butuh username
-                        ),
-                      ),
-                    );
-                  },
-                ),
-
-                // MENU UMUM LAINNYA
-                _buildMenuItem(context, Icons.workspace_premium, 'Premium Users', isBordered: true),
-                _buildMenuItem(context, Icons.music_note, 'Trapenden Music', isBordered: true),
-                const SizedBox(height: 10),
-                _buildMenuItem(context, Icons.monitor_heart, 'System Monitor'),
-                _buildMenuItem(context, Icons.assignment, 'Activity Log'),
-                _buildMenuItem(context, Icons.notifications, 'Notifications'),
-                _buildMenuItem(context, Icons.security, 'Account Security'),
-                
-                const Padding(padding: EdgeInsets.symmetric(vertical: 10), child: Divider(color: Colors.black, thickness: 1.5)),
-                
-                _buildMenuItem(context, Icons.history, 'Riwayat Aktivitas'),
-                _buildMenuItem(context, Icons.support_agent, 'Support'),
-              ],
-            ),
-          ),
-
-          // === LOGOUT ===
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: InkWell(
-              onTap: () => Navigator.pop(context),
-              child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
-                decoration: BoxDecoration(color: const Color(0xFFFFEBEE), border: Border.all(color: const Color(0xFFE53935), width: 2), borderRadius: BorderRadius.circular(12)),
-                child: const Row(
+                Text(message, textAlign: TextAlign.center, style: const TextStyle(fontSize: 14, color: Colors.white70, height: 1.5, fontFamily: 'ShareTechMono')),
+                const SizedBox(height: 28),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.logout, color: Color(0xFFE53935), size: 20),
-                    SizedBox(width: 16),
-                    Text('Log Out', style: TextStyle(color: Color(0xFFE53935), fontWeight: FontWeight.w900, fontSize: 14, fontFamily: 'monospace')),
-                    Spacer(),
-                    Icon(Icons.arrow_forward_ios, color: Color(0xFFE53935), size: 14),
+                    if (cancelText != null) ...[
+                      Expanded(child: OutlinedButton(onPressed: onCancel ?? () => Navigator.of(context).pop(), style: OutlinedButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 14), foregroundColor: Colors.white70, side: BorderSide(color: Colors.white.withOpacity(0.2)), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))), child: Text(cancelText, style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14)))),
+                      const SizedBox(width: 12),
+                    ],
+                    Expanded(child: ElevatedButton(onPressed: () { if (onConfirm != null) { onConfirm(); } else { Navigator.of(context).pop(); } }, style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 14), backgroundColor: const Color(0xFF4FC3F7), foregroundColor: Colors.black, elevation: 0, shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))), child: Text(confirmText ?? 'OK', style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 14)))),
                   ],
                 ),
-              ),
+              ],
             ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  // Fungsi buat bikin item menu
-  Widget _buildMenuItem(BuildContext context, IconData icon, String title, {bool isBordered = false, VoidCallback? onTap}) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: InkWell(
-        onTap: onTap ?? () => Navigator.pop(context), 
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 16),
-          decoration: isBordered
-              ? BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: const Color(0xFF171717), width: 2),
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: const [BoxShadow(color: Color(0xFF171717), offset: Offset(2, 3), blurRadius: 0)],
-                )
-              : null,
-          child: Row(
-            children: [
-              Icon(icon, color: const Color(0xFF171717), size: 22),
-              const SizedBox(width: 16),
-              Expanded(
-                child: Text(title, style: const TextStyle(color: Color(0xFF171717), fontWeight: FontWeight.w800, fontSize: 14, fontFamily: 'monospace')),
-              ),
-              const Icon(Icons.arrow_forward_ios, color: Color(0xFF171717), size: 14),
-            ],
           ),
         ),
       ),
