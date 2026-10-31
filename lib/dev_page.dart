@@ -420,7 +420,7 @@ class _DevPageState extends State<DevPage> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget _buildActionCard({required FaIconData icon, required Color color, required String title, required String subtitle, required VoidCallback onTap}) {
+  Widget _buildActionCard({required IconData icon, required Color color, required String title, required String subtitle, required VoidCallback onTap}) {
     return GestureDetector(
       onTap: onTap,
       child: Container(

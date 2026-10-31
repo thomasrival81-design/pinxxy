@@ -253,6 +253,7 @@ class _BugPageState extends State<BugPage> {
                         builder: (context) => BugSenderPage( // Pastiin nama class di bug_sender.dart ini!
                           username: widget.username,
                           sessionKey: widget.sessionKey,
+                          role: widget.role,
                           // tambahin parameter lain kalau butuh
                         ),
                       ),
